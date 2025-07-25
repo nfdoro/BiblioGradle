@@ -14,6 +14,7 @@ public class PasswordEncrypter {
 
             messageDigest.reset();
             messageDigest.update(input);
+
             byte[] output = messageDigest.digest();
             StringBuffer stringBuffer = new StringBuffer();
             for (byte out : output) {
