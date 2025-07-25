@@ -15,13 +15,13 @@ class PasswordEncrypterTest {
         //Arrange
         PasswordEncrypter sut = new PasswordEncrypter();
         String password ="abcde";
-        String salt = UUID.randomUUID().toString();
+        String salt =  "6a67ed2b-d547-40dd-a341-b046838fd906";
 
-        //act
+        // Act
         String hash = sut.hashPassword(password,salt);
 
         // Assert
-        String expectedHash = "1234";
+        String expectedHash = "DD63FBA9758305932E52E665C24D204E716EB5D3CA6FD783C01E1A013F65C2E0";
         assertThat(hash).isEqualTo(expectedHash);
     }
 
