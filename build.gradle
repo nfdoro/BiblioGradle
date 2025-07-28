@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version'3.5.3'
     id 'io.spring.dependency-management' version '1.1.7'
+    id 'jacoco'
 }
 
 group = 'edu.itplus.bibliospring'
@@ -28,10 +29,11 @@ test {
 
 
 jacocoTestReport {
-    dependsOn test reports {
-        xml.enabled false
-        csv.enabled false
-        html.destination file("${buildDir}/coverage")
+    dependsOn test
+    reports {
+        xml.required.set(false)
+        csv.required.set(false)
+        html.outputLocation.set(layout.buildDirectory.dir("coverage"))
     }
 }
 
