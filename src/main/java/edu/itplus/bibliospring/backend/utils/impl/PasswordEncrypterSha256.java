@@ -1,12 +1,15 @@
-package edu.itplus.bibliospring.backend.utils;
+package edu.itplus.bibliospring.backend.utils.impl;
 
+import edu.itplus.bibliospring.backend.utils.PasswordEncryptor;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 @Component
-public class PasswordEncrypter {
+@Profile("JDBC")
+public class PasswordEncrypterSha256 implements PasswordEncryptor {
     public String hashPassword(String password, String salt){
         try {
             MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");

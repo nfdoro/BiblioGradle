@@ -23,5 +23,15 @@ dependencies {
 
 test {
     useJUnitPlatform()
+    finalizedBy jacocoTestReport
+}
+
+
+jacocoTestReport {
+    dependsOn test reports {
+        xml.enabled false
+        csv.enabled false
+        html.destination file("${buildDir}/coverage")
+    }
 }
 
