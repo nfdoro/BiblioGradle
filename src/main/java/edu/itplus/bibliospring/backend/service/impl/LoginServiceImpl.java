@@ -3,6 +3,7 @@ package edu.itplus.bibliospring.backend.service.impl;
 import edu.itplus.bibliospring.backend.model.User;
 import edu.itplus.bibliospring.backend.repository.UserDAO;
 import edu.itplus.bibliospring.backend.service.LoginService;
+import edu.itplus.bibliospring.backend.utils.PasswordEncryptor;
 import edu.itplus.bibliospring.backend.utils.impl.PasswordEncrypterSha256;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,7 +14,7 @@ public class LoginServiceImpl implements LoginService {
     private UserDAO userDAO;
 
     @Autowired
-    private PasswordEncrypterSha256 passwordEncrypter;
+    private PasswordEncryptor passwordEncrypter;
 
     @Override
     public boolean login(User user) {

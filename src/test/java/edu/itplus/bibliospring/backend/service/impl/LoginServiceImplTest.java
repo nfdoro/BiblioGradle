@@ -78,14 +78,21 @@ class LoginServiceImplTest {
     @Test
     void register() {
         // Arrange
-        // Create a mock User object with a username and password
-        // Mock the PasswordEncrypter to return a hashed password when hashPassword is called
+        User userToRegister = new User();
+        userToRegister.setPassword(TestPasswordEncryptor.password);
+        userToRegister.setUsername("NewUser");
+        userToRegister.setUuid(TestPasswordEncryptor.salt);
+
+        when(testPasswordEncrypter.hashPassword(userToRegister.getPassword(), userToRegister.getUuid()))
+                .thenReturn(TestPasswordEncryptor.hashedPassword);
 
         // Act
-        // Call the register method with the mock User object
+        serviceUnderTest.register(userToRegister);
 
         // Assert
-        // Verify that the UserDAO's create method was called with the User object containing the hashed password
-        // Verify that the PasswordEncrypter's hashPassword method was called with the correct parameters
-    }
+        verify(testPasswordEncrypter, times(1)).hashPassword(TestPasswordEncryptor.password, TestPasswordEncryptor.salt);
+        verify(testUserDao, times(1)).create(argThat(user ->
+                user.getPassword().equals(TestPasswordEncryptor.hashedPassword) &&
+                        user.getUsername().equals("NewUser")
+        ));   }
 }
