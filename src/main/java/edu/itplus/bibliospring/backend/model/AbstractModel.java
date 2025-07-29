@@ -1,9 +1,15 @@
 package edu.itplus.bibliospring.backend.model;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.PrePersist;
+
 import java.util.Objects;
 import java.util.UUID;
-
+@MappedSuperclass
 public class AbstractModel {
+
+    @Column(name = "uuid", nullable = false,unique = true, length = 36)
     private String uuid;
 
     public String getUuid() {
@@ -27,5 +33,11 @@ public class AbstractModel {
     @Override
     public int hashCode() {
         return Objects.hashCode(getUuid());
+    }
+
+    // a lazy generalas miatt kell hogy biztosan letre hozza
+    @PrePersist
+    public void onPrePersist(){
+        getUuid();
     }
 }

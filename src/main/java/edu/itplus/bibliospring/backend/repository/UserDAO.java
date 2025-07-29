@@ -5,14 +5,9 @@ import edu.itplus.bibliospring.backend.model.User;
 import java.util.List;
 
 // Adat hozza feresi komponsensek fuggetlenek kell legyenek
-// egy dao, egy komponsnesert lesz felelos
+// egy dao, egy komponensert lesz felelos
 
-public interface UserDAO {
+public interface UserDAO extends BaseDAO<User,Long>{
 
-    User findByID (Long id);
-    User create(User user);
     User findByUsername(String username);
-    void update(User user);
-    void delete(User user);
-    List<User> findAll();
 }

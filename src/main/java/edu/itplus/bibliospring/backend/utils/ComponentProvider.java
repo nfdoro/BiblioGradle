@@ -16,4 +16,5 @@ public class ComponentProvider {
     public Logger getLogger(InjectionPoint injectionPoint){
         return LoggerFactory.getLogger(injectionPoint.getField().getDeclaringClass());
     }
+
 }
